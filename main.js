@@ -18,6 +18,7 @@ const MORE_BUILDERS  = Memory.config.more.builders;
 profiler.enable();
 module.exports.loop = function () {
     profiler.wrap(function() {
+        // Test1
         console.log();
         //aux.reloadConfig();
         aux.garbageCollect();
