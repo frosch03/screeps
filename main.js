@@ -45,27 +45,35 @@ module.exports.loop = function () {
                     break;
                 }
                 //console.log(role + ' ' + creeps.length + ' ' + Memory.config.rbalance[targetRoom][role]);
-                if(totalCreeps < Memory.config.max.creeps &&
-                   creeps.length < Memory.config.rbalance[targetRoom][role] &&
-                   !(Game.spawns.Spawn1.spawning)) {
-                    var energy = Game.spawns.Spawn1.room.energyAvailable;
-                    var name = undefined;
-                    if(role == 'attacker') {
-                        name = Game.spawns.Spawn1.createAttackCreep(energy, targetRoom);
-                    } else if(role == 'rangedAttacker') {
-                        name = Game.spawns.Spawn1.createRangedAttackCreep(energy, targetRoom);
-                    } else if(role == 'claimer') {
-                        name = Game.spawns.Spawn1.createClaimerCreep(targetRoom);
-                    } else {
-                        name = Game.spawns.Spawn1.createWorkerCreep(energy, role, targetRoom);
+                _.map(Game.spawns, spawn => {
+
+                    if(totalCreeps < Memory.config.max.creeps &&
+                       creeps.length < Memory.config.rbalance[targetRoom][role] &&
+                       // !(Game.spawns.Spawn1.spawning)) {
+                       !(spawn.spawning)) {
+                        // var energy = Game.spawns.Spawn1.room.energyAvailable;
+                        var energy = spawn.room.energyAvailable;
+                        var name = undefined;
+                        if(role == 'attacker') {
+                            // name = Game.spawns.Spawn1.createAttackCreep(energy, targetRoom);
+                            name = spawn.createAttackCreep(energy, targetRoom);
+                        } else if(role == 'rangedAttacker') {
+                            // name = Game.spawns.Spawn1.createRangedAttackCreep(energy, targetRoom);
+                            name = spawn.createRangedAttackCreep(energy, targetRoom);
+                        } else if(role == 'claimer') {
+                            // name = Game.spawns.Spawn1.createClaimerCreep(targetRoom);
+                            name = spawn.createClaimerCreep(targetRoom);
+                        } else {
+                            // name = Game.spawns.Spawn1.createWorkerCreep(energy, role, targetRoom);
+                            name = spawn.createWorkerCreep(energy, role, targetRoom);
+                        }
+                        if(!(name < 0)) {
+                            // console.log('Spawning new ' + role + ' creep: ' + name + ' (' + (creeps.length + 1) + '/' + Memory.config.rbalance[targetRoom][role] + ') ' + targetRoom);
+                            console.log(spawn.name + ': Spawning new ' + role + ' creep: ' + name + ' (' + (creeps.length + 1) + '/' + Memory.config.rbalance[targetRoom][role] + ') ' + targetRoom);
+                        }
                     }
-                    if(!(name < 0)) {
-                        console.log('Spawning new ' + role + ' creep: ' + name + ' (' + (creeps.length + 1) + '/' + Memory.config.rbalance[targetRoom][role] + ') ' + targetRoom);
-                    } else {
-                        // console.log(name);
-                        break;
-                    }
-                }
+                    
+                });
             }
         }
 

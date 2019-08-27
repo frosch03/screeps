@@ -149,6 +149,7 @@ var fns = {
         }
 
         if(possibleSources.length == 0) {
+            creep.say('H-X ---');
             let otherRoom = this.nextUnfilledSource().room;
             let exit = creep.room.findExitTo(otherRoom);
             creep.moveTo(creep.pos.findClosestByRange(exit));

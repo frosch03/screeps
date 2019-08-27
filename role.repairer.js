@@ -41,7 +41,7 @@ var roleRepairer = {
                     for (let percentage = 0.0001; percentage <= 1; percentage = percentage + 0.0001) {
                         // target = creep.room.find(walls_to_repair, {
                         // target = creep.pos.findClosestByPath(walls_to_repair, {
-                        target = creep.findClosestByRange(walls_to_repair, {
+                        target = creep.pos.findClosestByRange(walls_to_repair, {
                             filter: (w) => w.hits / w.hitsMax < percentage
                         });
                         if (target != undefined) {

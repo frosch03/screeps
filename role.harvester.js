@@ -21,39 +21,6 @@ var roleHarvester = {
         if(!cmem.transfering) {
             aux.letCreepHarvestFromSrc(creep);
         }
-        // if (!creep.memory.transfering) {
-        //     let creepsInRoom = _.filter(Game.creeps, (c) => c.memory.type == 'worker' && c.room.name == creep.room.name);
-        //     let sources = creep.room.find(FIND_SOURCES);
-        //     let minerals = creep.room.find(FIND_MINERALS);
-        //     let harvestPoints = sources + minerals;
-        //     var offset = creep.memory.srcoff;
-        //     if (sources.length <= offset) {
-        //         offset = 0;
-        //     }
-
-        //     if(sources[offset].energy == 0) {
-        //         let newOffset = _.findIndex(sources, (s) => s.energy > 0);
-        //         if(newOffset < 0) {
-        //             if(creep.room.name == creep.memory.home) {
-        //                 let storage = Game.getObjectById('5d3cf8aea95d7373b68d72d2');
-        //                 if(creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        //                     creep.moveTo(storage, {visualizePathStyle: {stroke: '#ffaa00'}});  
-        //                 }   
-        //             } else {
-        //                 var exit = creep.room.findExitTo(Memory.config.default.home);
-        //                 creep.moveTo(creep.pos.findClosestByRange(exit));
-        //             }
-        //         } else {
-        //             // console.log(creep.name + ' changing source offset: ' + creep.memory.srcoff + ' -> ' + newOffset);
-        //             offset = newOffset; 
-        //         }
-        //     } 
-
-        //     if(creep.harvest(sources[offset]) == ERR_NOT_IN_RANGE) {
-        //         creep.moveTo(sources[offset], {visualizePathStyle: {stroke: '#ffaa00'}});  
-        //     }
-        //     newTarget = aux.navigateCreepToSrc(creep);
-        // }
 	  },
 
     doUnload: function(creep) {
