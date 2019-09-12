@@ -34,7 +34,9 @@ var roleBuilder = {
 	      } else {
         //     if(creep.room.name == creep.memory.target) {
                 // auxiliary.navigateCreepToSrc(creep);   
-                auxiliary.refillCreepAtNearestSrc(creep);   
+                // auxiliary.refillCreepAtNearestSrc(creep);   
+                auxiliary.letCreepHarvestFromSrc(creep);   
+
         //     } else {
         //         var exit = creep.room.findExitTo(creep.memory.target);
         //         creep.moveTo(creep.pos.findClosestByRange(exit));

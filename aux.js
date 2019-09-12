@@ -1,4 +1,5 @@
 var config = require('configuration');
+// Test
 
 var fns = {
 
@@ -59,9 +60,9 @@ var fns = {
                 let creepCount = _.map(Game.creeps, (creep) =>  creep.memory.target == room).length;
                 let towersEnergyLevel = _.map(Game.rooms[room].find(FIND_STRUCTURES, { filter: (s) => s.structureType == STRUCTURE_TOWER}),   (t) => Math.round((t.energy / t.energyCapacity)*1000)/10);
                 let towerString = " T:(";
-                let towerAppendix = _.map(towersEnergyLevel, (t) => (' '.repeat(3-((t).length)) + t)).join(', ');
+                let towerAppendix = _.map(towersEnergyLevel, (t) => (' '.repeat(4-((t).length)) + t)).join(', ');
 
-                towerString += (' '.repeat(8-(towerAppendix.length)) + towerAppendix);
+                towerString += (' '.repeat(13-(towerAppendix.length)) + towerAppendix);
                 
                 // var t = (0.01 * 100).toString(); 
 
@@ -81,11 +82,11 @@ var fns = {
         // var sources = Game.rooms[cmem.home].find(FIND_SOURCES);
         var sources = creep.room.find(FIND_SOURCES);
 
-        if (cmem.srcoff < 0) {
+        if (cmem.srcoff < 0  || cmem.srcoff == undefined) {
             cmem.srcoff = null;
         }
 
-        if (cmem.srcoff && sources.length <= cmem.srcoff) {
+        if (cmem.srcoff > 0 && sources.length <= cmem.srcoff) {
             cmem.srcoff = 0;
         }
 
@@ -93,7 +94,7 @@ var fns = {
             cmem.srcoff = null;
         }
 
-        if(cmem.srcoff) {
+        if(cmem.srcoff >= 0) {
             creep.say('H-> ' + cmem.srcoff + '-SRC');
             if(creep.room.name == cmem.home) {
                 if(creep.harvest(sources[cmem.srcoff]) == ERR_NOT_IN_RANGE) {
@@ -264,6 +265,8 @@ var fns = {
         var nonEmptySources = _.filter(Memory.config.sources,
                                        (s) => s.room == room &&
                                               Game.rooms[room].find(FIND_SOURCES)[s.src]['energy'] > 0);
+        // var nonEmptySources = _.filter(Game.rooms[room].find(FIND_SOURCES),
+        //                                (s) => s.energy > 0);
         // var possibleSources = _.map(_.filter(Memory.config.sources, (s) => s.room == room), (x) => x.src);
         var possibleSources = _.map(nonEmptySources, (x) => x.src);
 
@@ -278,6 +281,8 @@ var fns = {
 
         let mostUncrowdedSource = sourceIndexs[_.indexOf(creepCounts, _.min(creepCounts))]; 
         let creepCountOfMostUncrowdedSource = creepCounts[_.indexOf(creepCounts, _.min(creepCounts))]; 
+        // console.log('a: ' + JSON.stringify(mostUncrowdedSource));
+        // console.log('b: ' + JSON.stringify(creepCountOfMostUncrowdedSource));
         
         return { room: room, src: mostUncrowdedSource, count: creepCountOfMostUncrowdedSource };
     },
@@ -285,7 +290,6 @@ var fns = {
     nextUnfilledSourceInRoom: function(room) {
         let preResult = this.nextUnfilledSourceInRoomDetailed(room);
         let result = { room: preResult.room, src: preResult.src };
-        
         return(result);
     },
 

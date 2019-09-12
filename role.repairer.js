@@ -24,10 +24,12 @@ var roleRepairer = {
 
         var walls_to_repair = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
-                return ((structure.structureType == STRUCTURE_WALL))}});
+                return ((structure.structureType == STRUCTURE_WALL) ||
+                        (structure.structureType == STRUCTURE_RAMPART))}});
         var non_walls_to_repair = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return ((structure.structureType != STRUCTURE_WALL) &&
+                        (structure.structureType != STRUCTURE_RAMPART) &&
                         (structure.hits < structure.hitsMax))}});
         var target = undefined;
 

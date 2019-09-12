@@ -12,22 +12,30 @@ module.exports = {
         creeps: 28,
     },
     rbalance: {
-        W26N23: {
-            harvester: 3,
-            transferer: 2,
-            upgrader: 3,
-            repairer: 2,
-            builder: 2,
-            attacker: 0,
-            rangedAttacker: 2,
-            claimer: 0
-        },
-        W27N23: {
-            builder: 2,
+        W26N22: {
+            builder: 0,
             repairer: 1,
             harvester: 1,
             upgrader: 2,
-            attacker: 1,
+            attacker: 0,
+            claimer: 0
+        }, 
+       W26N23: {
+            harvester: 4,
+            transferer: 2,
+            upgrader: 3,
+            repairer: 1,
+            builder: 0,
+            attacker: 0,
+            rangedAttacker: 0,
+            claimer: 0
+        },
+        W27N23: {
+            builder: 0,
+            repairer: 1,
+            harvester: 2,
+            upgrader: 1,
+            attacker: 0,
             claimer: 0
         },
     },
@@ -57,9 +65,9 @@ module.exports = {
         },
         rangedAttacker: {
             // simple: [RANGED_ATTACK,TOUGH,MOVE,MOVE],
-            normal: [RANGED_ATTACK,RANGED_ATTACK,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE],
-            big:    [RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],
-            // bigger: [RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE]
+            normal: [TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK],
+            big:    [TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK],
+            // bigger: [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK]
         }
     },
     worker: {
@@ -70,15 +78,16 @@ module.exports = {
     },
     attacker: {
         // simple: [ATTACK,TOUGH,MOVE,MOVE],
-        normal: [ATTACK,ATTACK,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE],
-        big:    [ATTACK,ATTACK,ATTACK,ATTACK,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],
-        // bigger: [ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE]
+        normal: [TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK],
+        big:    [TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK],
+        // bigger: [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,ATTACK]
     },
     default: {
         srcoffset: 0,
         worker: 'big',
         target: '',
-        home: 'W26N23'
+        home: 'W26N23',
+        holdPos: { x: 25, y: 25 }
     },
     sources: [
         { room: 'W26N23', src: 0}, 
